@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary Phool</title>
+    <!-- Google Font for Handwriting Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 12 Image Slideshow Background */
+        .bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bg-slideshow div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: slideAnimation 36s infinite linear;
+        }
+
+        .bg-slideshow div:nth-child(1) { background-image: url('photo1.jpg'); animation-delay: 0s; }
+        .bg-slideshow div:nth-child(2) { background-image: url('photo2.jpg'); animation-delay: 3s; }
+        .bg-slideshow div:nth-child(3) { background-image: url('photo3.jpg'); animation-delay: 6s; }
+        .bg-slideshow div:nth-child(4) { background-image: url('photo4.jpg'); animation-delay: 9s; }
+        .bg-slideshow div:nth-child(5) { background-image: url('photo5.jpg'); animation-delay: 12s; }
+        .bg-slideshow div:nth-child(6) { background-image: url('photo6.jpg'); animation-delay: 15s; }
+        .bg-slideshow div:nth-child(7) { background-image: url('photo7.jpg'); animation-delay: 18s; }
+        .bg-slideshow div:nth-child(8) { background-image: url('photo8.jpg'); animation-delay: 21s; }
+        .bg-slideshow div:nth-child(9) { background-image: url('photo9.jpg'); animation-delay: 24s; }
+        .bg-slideshow div:nth-child(10) { background-image: url('photo10.jpg'); animation-delay: 27s; }
+        .bg-slideshow div:nth-child(11) { background-image: url('photo11.jpg'); animation-delay: 30s; }
+        .bg-slideshow div:nth-child(12) { background-image: url('photo12.jpg'); animation-delay: 33s; }
+
+        @keyframes slideAnimation {
+            0% { opacity: 0; transform: scale(1); }
+            5% { opacity: 0.8; }
+            8% { opacity: 0.8; }
+            13% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        h2, h3 {
+            margin-bottom: 15px;
+            color: #ff3366;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"] {
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 15px;
+            width: 80%;
+        }
+
+        button {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #e02855;
+            transform: scale(1.05);
+        }
+
+        .anim-gif {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .date-badge {
+            background: rgba(255, 51, 102, 0.3);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* Envelope Animation Styles */
+        .envelope-wrapper {
+            cursor: pointer;
+            margin: 20px auto;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 130px;
+            background: #ff3366;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 70px solid #e02855;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .envelope.open::before {
+            transform: rotateX(180deg);
+        }
+
+        .heart-seal {
+            font-size: 30px;
+            z-index: 2;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Handwriting Letter Box */
+        .letter-paper {
+            background: rgba(255, 253, 240, 0.95);
+            color: #2b2b2b;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Hind Siliguri', cursive, sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2rem;
+            background-color: #ff3366;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 12 Photos Background Slideshow -->
+    <div class="bg-slideshow">
+        <div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Step 1: Password Lock -->
+    <div id="lock-screen" class="card">
+        <h2>Happy Anniversary!</h2>
+        <div class="date-badge">Anniversary date: 29 August, 2026</div>
+        <p>আমাদের এনিভার্সারির ডেট কত?</p>
+        <input type="password" id="password-input" placeholder="পাসওয়ার্ড লিখুন">
+        <br>
+        <button onclick="checkPassword()">আনলক করুন</button>
+        <p id="error-msg" style="color: #ff4d4d; font-size: 0.9rem; margin-top: 10px;"></p>
+    </div>
+
+    <!-- Step 2: Welcome Screen -->
+    <div id="welcome-screen" class="card hidden">
+        <h2>স্বাগতম Phool!</h2>
+        <img src="welcome-anim.gif" class="anim-gif" alt="Welcome Animation">
+        <p>Thanks for choosing me & thanks for doing this for me. I love you so so much My Wifeyyy.</p>
+        <button onclick="startQuiz()">সামনে যান ❤️</button>
+    </div>
+
+    <!-- Step 3: Questions Screen -->
+    <div id="quiz-screen" class="card hidden">
+        <h3 id="question-text">প্রশ্ন</h3>
+        
+        <!-- Interactive Animations -->
+        <img id="yes-gif" src="yes-anim.gif" class="anim-gif hidden" alt="Yes Animation">
+        <img id="no-gif" src="no-anim.gif" class="anim-gif hidden" alt="No Animation">
+
+        <div id="btn-group">
+            <button onclick="handleAnswer(true)">হ্যাঁ</button>
+            <button onclick="handleAnswer(false)">না</button>
+        </div>
+        <button id="next-btn" class="hidden" onclick="nextQuestion()">পরের প্রশ্ন 👉</button>
+    </div>
+
+    <!-- Step 4: Final Envelope Screen -->
+    <div id="envelope-screen" class="card hidden">
+        <h2>আপনার জন্য একটি বিশেষ চিঠি ❤️</h2>
+        <p>চিঠিটি খুলতে খামের ওপর চাপ দিন</p>
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div class="envelope" id="envelope">
+                <span class="heart-seal">💌</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 5: Handwriting & Typing Letter Screen -->
+    <div id="letter-screen" class="card hidden">
+        <h2>My Dearest Phool ❤️</h2>
+        <div class="letter-paper">
+            <span id="typed-text"></span><span class="typing-cursor"></span>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            "১। ফুল কি আরাফাতের?",
+            "২। আমাকে ভালোবাসেন?",
+            "৩। সারাজীবন আমার হাত ধরে থাকতে চান?",
+            "৪। আমার সাথে সারা পৃথিবী ঘুরতে চান?",
+            "৫। বাসর রাতে পারমিশন দিবেন?"
+        ];
+
+        const fullLetterText = `আমাদের ভালোবাসার এক বছর....🩵
+
+ঠিক এক বছর আগে ২৮ আগস্ট রাতে রাহাতের হাইট নিয়ে কথা আমি কেন জানি না অনেক রাগ করছি। আপনাকে ফ্রেন্ড হিসেবে দেখতাম কিন্তু কেন জানি না বেশি রিয়েক্ট করে ফেলছি। পরে ২৯ তারিখ বুকে সাহস নিয়ে কনফেস করেই ফেললাম। হাত কাপতেছিলো, মাথা গরমে ফাটতেছিলো। বুক কাপতেছিলো। জানি চান নাই আগাইতে। তাও ভাগ্যে লেখা ছিলো তাই সব হইছে। ভাগ্যিস করছিলাম কনফেস। নাইলে আপনার মতো মানুষ আমি কিভাবে পাইতাম বলেন?
+
+আজ আমাদের একসাথে পথচলার এক বছর হইলো। দেখতে দেখতে একটা বছর কেমনে যে পার হইলো, নিজেও বুঝতে পারি নাই। এই একটা বছরে আমরা কত কিছু পার করছি কত হাসি, কত আনন্দ, কত সুন্দর মুহূর্ত, আবার কত ঝগড়া, কত অভিমান, কত রাগ-ক্ষোভ। কিন্তু সবকিছুর শেষে একটা জিনিসই বারবার বুঝছি আমি আপনাকে ছাড়া থাকতে চাই না।
+
+আপনারর সাথে কাটানো প্রতিটা মুহূর্ত আমার কাছে অনেক বেশি দামী। হয়তো সবসময় আপনারে ঠিকভাবে বুঝতে পারি নাই, হয়তো অনেক সময় আমার কথায় বা কাজে আপনার মন খারাপ হইছে। হয়তো এমন অনেক ভুল করছি, যেগুলাতে আপনি কষ্ট পাইছেন। সত্যি বলতেছি, আমার ভুলগুলার জন্য আমাকে ক্ষমা কইরেন বউ। আমি কখনো ইচ্ছা করে আপনারে কষ্ট দিতে চাই নাই। আমি মানুষ, আমার ভুল হয়; কিন্তু আপনাকে হারানোর ভয়টা আমার সব ভুলের চাইতেও অনেক বড়।
+
+আপনি আমার জীবনে আসার পর আমি বুঝছি, একজন মানুষ শুধু ভালোবাসার মানুষ না, সে একইসাথে শান্তি, অভ্যাস, মায়া আর পুরো একটা পৃথিবী হয়ে যেতে পারে। আপনি আমার কাছে ঠিক তেমনই একজন। আপনার সাথে কথা না বললে দিনটা কেমন জানি অসম্পূর্ণ লাগে। আপনার সাথে রাগারাগি হইলেও কিছুক্ষণ পর আপনার সাথেই কথা বলতে ইচ্ছা করে। আপনার উপর অভিমান হইলেও আপনারর কাছেই থাকতে ইচ্ছা করে। কারণ দিনশেষে আমার মানুষটা তো আপনি আমার অনেক আপন একজন।
+
+আমি চাই আমাদের মধ্যে যত ঝগড়াই হোক, যত অভিমানই হোক, আমরা যেন কখনো একে অপরের হাতটা না ছাড়ি। রাগ হইলে রাগ কইরো, অভিমান হইলে অভিমান কইরেন, আমার উপর বকা দিয়েন। কিন্তু আমারে ছেড়ে যাইয়েন না ফুল আমার আর আমার কোনো ভুল হইলে আমারে বুঝাইয়ে, আমারে ঠিক করে দিয়েন। আমিও চেষ্টা করবো আপনাকে আগের থেকে বেশি বুঝতে, আপনার কথা শুনতে আর আপনার মনটারে যত্ন করতে।
+
+আর একটা কথা নিজের যত্ন নিয়েন। সময়মতো খাইয়েন। কম খান আর দুর্বল হোন। এমন দুর্বল হইলে আমি আমাকে কোলে নিবেন কিভাবে আমার জামাইটা। আপনাকে শুধু ভালোবাসতে চাই না, সারাজীবনযত্নও নিতে চাই।
+
+মাঝে মাঝে আপনাকে হারানোর ভয় হয়। ভাবলেই বুকের ভিতরটা কেমন জানি খালি খালি লাগে,গলা শুকায় যায়,চোখের কোণায় পানি আসে। কারণ আপনি এখন শুধু আমার ভালোবাসা না,আমার জীবনের পুরাই আপনি। আপনাকে ছাড়া ভবিষ্যৎটা কল্পনা করতেও আমার কষ্ট হয়।
+
+আমি জানি না সামনে আমাদের জীবন কেমন হবে। সবসময় হয়তো সুখ থাকবে না, সবসময় সবকিছু আমাদের মনের মতো হবে না। জীবনে অনেক কঠিন সময় আসতে পারে। কিন্তু আমি চাই, সেই কঠিন সময়গুলাতেও আমরা দুজন পাশাপাশি থাকি। টাকা-পয়সা, বাড়ি-গাড়ি, বড় বড় স্বপ্ন সবকিছুর আগে আমার একটা স্বপ্ন আছে, সেটা হইলো আপনাকে নিয়ে একটা সুন্দর জীবন কাটানো।
+
+আমি আপনার সাথে শুধু আজকের জন্য না, আগামীকালগুলার জন্যও স্বপ্ন দেখতে চাই। আপনার সাথে ঘর করতে চাই, তোমার সাথে হাজারটা ছোট ছোট মুহূর্ত জমাইতে চাই। একসাথে হাসতে চাই, একসাথে কাঁদতে চাই, একসাথে বড় হইতে চাই। বয়স বাড়বে, চেহারায় পরিবর্তন আসবে, সময় বদলাবে কিন্তু আমি চাই তখনও যেন তোমার হাতটা আমার হাতের মধ্যে থাকে।
+
+এক বছর হইছে আমাদের। সামনে আরও অনেক বছর আসুক। আরও অনেক Anniversary আসুক। আর প্রতিটা বছর শেষে যেন আমরা পেছনে তাকাইয়া বলতে পারি, “দেখো, এত কিছু হইলেও আমরা কিন্তু একসাথেই আছি।”
+
+তুমি আমার জীবনের সবচেয়ে সুন্দর পাওয়া জিনিসগুলার একটা। তোমারে নিয়ে আমার অনেক স্বপ্ন, অনেক আশা, অনেক মায়া। আমি চাই না আমাদের গল্পটা শুধু এক বছরের হোক। আমি চাই, এই গল্পটা সারাজীবনের হোক।
+
+শুভ এক বছর, আমার ভালোবাসা। ❤️
+
+আমার ভুলগুলা ক্ষমা কইরে।, আমার হাতটা ধরে থাইকেন, আমার পাশে থাইকেন। আমিও কথা দিতেছি যতদিন পাশে থাকবো, ততোদিন আপনার আরাফাত হয়েই থাকবো। আমার মনের, শরীরের কোনো কিছুর একটু অংশও কারোর না আপনি ছাড়া।
+
+আমি ঘুম থেকে উঠেই আপনার মুখটা দেখতে চাই আজীবন। আমাকে নিয়েই আপনার সব হাসি কান্না থাকুক আমি চাই। সারাজীবন ভালোবাসতে চাই। আপনার মুখে এতো মায়া আমি কিভাবে ছাড়বো? একটু দেখলেই সব কিছু থেকে শান্তি পাই। এখন জড়ায় ধরতে পারলে ভালো লাগতো। শক্ত করে ধরতাম।
+
+আজ, কাল, পরশু প্রতিটা দিন তোমার সাথেই কাটাইতে চাই।
+এক বছর না, সারাজীবন আপনার সাথে নতুন নতুন স্বপ্ন দেখতে চাই। ভালোবাসি আপনাকে আজকের চাইতে আগামীকাল আরও বেশি ফুল আমার।
+
+ভালোবাসি আমার ফুলের মতো লক্ষী বউটা🌸💙
+
+ইতি 
+আপনার জামাই
+আরাফাত ( ভোটকা চাইনিজ )।`;
+
+        let currentQuestion = 0;
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            if (input === '2908') {
+                document.getElementById('lock-screen').classList.add('hidden');
+                document.getElementById('welcome-screen').classList.remove('hidden');
+                document.getElementById('bg-music').play().catch(() => {});
+            } else {
+                document.getElementById('error-msg').innerText = "ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।";
+            }
+        }
+
+        function startQuiz() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            document.getElementById('question-text').innerText = questions[currentQuestion];
+            document.getElementById('yes-gif').classList.add('hidden');
+            document.getElementById('no-gif').classList.add('hidden');
+            document.getElementById('btn-group').classList.remove('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+        }
+
+        function handleAnswer(isYes) {
+            document.getElementById('btn-group').classList.add('hidden');
+            if (isYes) {
+                document.getElementById('yes-gif').classList.remove('hidden');
+                document.getElementById('next-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('no-gif').classList.remove('hidden');
+                setTimeout(() => {
+                    alert("উফ! 'না' বলা যাবে না, 'হ্যাঁ' বলতে হবে! 😜");
+                    showQuestion();
+                }, 1500);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('envelope-screen').classList.remove('hidden');
+            }
+        }
+
+        function openEnvelope() {
+            const env = document.getElementById('envelope');
+            env.classList.add('open');
+            setTimeout(() => {
+                document.getElementById('envelope-screen').classList.add('hidden');
+                document.getElementById('letter-screen').classList.remove('hidden');
+                startTypingAnimation();
+            }, 800);
+        }
+
+        function startTypingAnimation() {
+            let i = 0;
+            const speed = 40; // typing speed in milliseconds
+            const typedTextSpan = document.getElementById('typed-text');
+            const letterContainer = document.querySelector('.letter-paper');
+
+            function typeWriter() {
+                if (i < fullLetterText.length) {
+                    if (fullLetterText.charAt(i) === '\n') {
+                        typedTextSpan.innerHTML += '<br>';
+                    } else {
+                        typedTextSpan.innerHTML += fullLetterText.charAt(i);
+                    }
+                    i++;
+                    letterContainer.scrollTop = letterContainer.scrollHeight; // Auto scroll down
+                    setTimeout(typeWriter, speed);
+                }
+            }
+            typeWriter();
+        }
+    </script>
+</body>
+</html>
