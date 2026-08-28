@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Anniversary Phool</title>
-    <!-- Google Font for Handwriting Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
@@ -133,8 +132,8 @@
         }
 
         .anim-gif {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             object-fit: cover;
             border-radius: 15px;
             margin: 15px auto;
@@ -233,12 +232,10 @@
 </head>
 <body>
 
-    <!-- Background Music -->
     <audio id="bg-music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- 12 Photos Background Slideshow -->
     <div class="bg-slideshow">
         <div></div><div></div><div></div><div></div>
         <div></div><div></div><div></div><div></div>
@@ -246,7 +243,6 @@
     </div>
     <div class="overlay"></div>
 
-    <!-- Step 1: Password Lock -->
     <div id="lock-screen" class="card">
         <h2>Happy Anniversary!</h2>
         <div class="date-badge">Anniversary date: 29 August, 2026</div>
@@ -257,21 +253,18 @@
         <p id="error-msg" style="color: #ff4d4d; font-size: 0.9rem; margin-top: 10px;"></p>
     </div>
 
-    <!-- Step 2: Welcome Screen -->
     <div id="welcome-screen" class="card hidden">
         <h2>স্বাগতম Phool!</h2>
-        <img src="welcome-anim.gif" class="anim-gif" alt="Welcome Animation">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/4789768215428559806" class="anim-gif" alt="Welcome Animation">
         <p>Thanks for choosing me & thanks for doing this for me. I love you so so much My Wifeyyy.</p>
         <button onclick="startQuiz()">সামনে যান ❤️</button>
     </div>
 
-    <!-- Step 3: Questions Screen -->
     <div id="quiz-screen" class="card hidden">
         <h3 id="question-text">প্রশ্ন</h3>
         
-        <!-- Interactive Animations -->
-        <img id="yes-gif" src="yes-anim.gif" class="anim-gif hidden" alt="Yes Animation">
-        <img id="no-gif" src="no-anim.gif" class="anim-gif hidden" alt="No Animation">
+        <img id="yes-gif" src="http://googleusercontent.com/image_collection/image_retrieval/14450430860716134725" class="anim-gif hidden" alt="Yes Animation">
+        <img id="no-gif" src="http://googleusercontent.com/image_collection/image_retrieval/6525019310877782493" class="anim-gif hidden" alt="No Animation">
 
         <div id="btn-group">
             <button onclick="handleAnswer(true)">হ্যাঁ</button>
@@ -280,7 +273,6 @@
         <button id="next-btn" class="hidden" onclick="nextQuestion()">পরের প্রশ্ন 👉</button>
     </div>
 
-    <!-- Step 4: Final Envelope Screen -->
     <div id="envelope-screen" class="card hidden">
         <h2>আপনার জন্য একটি বিশেষ চিঠি ❤️</h2>
         <p>চিঠিটি খুলতে খামের ওপর চাপ দিন</p>
@@ -291,7 +283,6 @@
         </div>
     </div>
 
-    <!-- Step 5: Handwriting & Typing Letter Screen -->
     <div id="letter-screen" class="card hidden">
         <h2>My Dearest Phool ❤️</h2>
         <div class="letter-paper">
