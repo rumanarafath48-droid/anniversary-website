@@ -157,6 +157,34 @@
             margin-bottom: 15px;
         }
 
+        /* Celebration Animation Text Styling */
+        .celebration-title {
+            font-size: 2.2rem;
+            color: #ff3366;
+            font-weight: bold;
+            animation: glowPulse 1.5s infinite alternate;
+            margin-bottom: 15px;
+        }
+
+        .celebration-subtitle {
+            font-size: 1.8rem;
+            color: #fff;
+            font-family: 'Caveat', cursive;
+            text-shadow: 0 0 15px #ff3366;
+            animation: bounceIn 1s ease forwards;
+        }
+
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366; transform: scale(1); }
+            100% { text-shadow: 0 0 20px #ff3366, 0 0 35px #ff3366; transform: scale(1.05); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
         /* Envelope Animation Styles */
         .envelope-wrapper {
             cursor: pointer;
@@ -257,6 +285,11 @@
         <p id="error-msg" style="color: #ff4d4d; font-size: 0.9rem; margin-top: 10px;"></p>
     </div>
 
+    <div id="celebration-screen" class="card hidden">
+        <h1 class="celebration-title">🎉 Happy Anniversary Phool! 🎉</h1>
+        <h2 class="celebration-subtitle">I Love You So So Much My Wifeyyy! ❤️</h2>
+    </div>
+
     <div id="welcome-screen" class="card hidden">
         <h2>স্বাগতম Phool! ❤️</h2>
         <p style="font-size: 1.3rem; margin: 25px 0;">Thanks for choosing me & thanks for doing this for me. I love you so so much My Wifeyyy.</p>
@@ -342,10 +375,16 @@
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
-            if (input === '2908') {
+            if (input === '2908' || input === '29') {
                 document.getElementById('lock-screen').classList.add('hidden');
-                document.getElementById('welcome-screen').classList.remove('hidden');
+                document.getElementById('celebration-screen').classList.remove('hidden');
                 document.getElementById('bg-music').play().catch(() => {});
+                
+                // Show celebration text for 3 seconds then go to welcome screen
+                setTimeout(() => {
+                    document.getElementById('celebration-screen').classList.add('hidden');
+                    document.getElementById('welcome-screen').classList.remove('hidden');
+                }, 3000);
             } else {
                 document.getElementById('error-msg').innerText = "ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।";
             }
@@ -359,7 +398,6 @@
 
         function showQuestion() {
             document.getElementById('question-text').innerText = questions[currentQuestion];
-            // Reset "No" button size for new question
             noScale = 1;
             const noBtn = document.getElementById('no-button');
             noBtn.style.transform = `scale(${noScale})`;
@@ -369,12 +407,12 @@
 
         function shrinkNoBtn() {
             const noBtn = document.getElementById('no-button');
-            noScale -= 0.3; // shrink by 30% each attempt
+            noScale -= 0.3;
             
             if (noScale <= 0.1) {
                 noBtn.style.transform = 'scale(0)';
                 noBtn.style.opacity = '0';
-                noBtn.style.pointerEvents = 'none'; // Completely unclickable
+                noBtn.style.pointerEvents = 'none';
             } else {
                 noBtn.style.transform = `scale(${noScale})`;
             }
@@ -402,7 +440,7 @@
 
         function startTypingAnimation() {
             let i = 0;
-            const speed = 40; // typing speed in milliseconds
+            const speed = 40;
             const typedTextSpan = document.getElementById('typed-text');
             const letterContainer = document.querySelector('.letter-paper');
 
@@ -414,7 +452,7 @@
                         typedTextSpan.innerHTML += fullLetterText.charAt(i);
                     }
                     i++;
-                    letterContainer.scrollTop = letterContainer.scrollHeight; // Auto scroll down
+                    letterContainer.scrollTop = letterContainer.scrollHeight;
                     setTimeout(typeWriter, speed);
                 }
             }
