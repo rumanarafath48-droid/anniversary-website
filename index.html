@@ -114,30 +114,34 @@
             width: 80%;
         }
 
-        button {
+        .btn-yes {
             background: #ff3366;
             color: white;
             border: none;
-            padding: 10px 25px;
-            font-size: 1rem;
+            padding: 12px 30px;
+            font-size: 1.1rem;
             border-radius: 25px;
             cursor: pointer;
-            transition: 0.3s;
-            margin: 5px;
+            transition: transform 0.2s ease, background 0.3s;
+            margin: 10px;
         }
 
-        button:hover {
+        .btn-yes:hover {
             background: #e02855;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-        .anim-gif {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 15px auto;
-            display: block;
+        .btn-no {
+            background: #555;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            margin: 10px;
+            display: inline-block;
         }
 
         .hidden {
@@ -249,28 +253,23 @@
         <p>আমাদের এনিভার্সারির ডেট কত?</p>
         <input type="password" id="password-input" placeholder="পাসওয়ার্ড লিখুন">
         <br>
-        <button onclick="checkPassword()">আনলক করুন</button>
+        <button class="btn-yes" onclick="checkPassword()">আনলক করুন</button>
         <p id="error-msg" style="color: #ff4d4d; font-size: 0.9rem; margin-top: 10px;"></p>
     </div>
 
     <div id="welcome-screen" class="card hidden">
-        <h2>স্বাগতম Phool!</h2>
-        <img src="http://googleusercontent.com/image_collection/image_retrieval/4789768215428559806" class="anim-gif" alt="Welcome Animation">
-        <p>Thanks for choosing me & thanks for doing this for me. I love you so so much My Wifeyyy.</p>
-        <button onclick="startQuiz()">সামনে যান ❤️</button>
+        <h2>স্বাগতম Phool! ❤️</h2>
+        <p style="font-size: 1.3rem; margin: 25px 0;">Thanks for choosing me & thanks for doing this for me. I love you so so much My Wifeyyy.</p>
+        <button class="btn-yes" onclick="startQuiz()">সামনে যান 👉</button>
     </div>
 
     <div id="quiz-screen" class="card hidden">
-        <h3 id="question-text">প্রশ্ন</h3>
+        <h3 id="question-text" style="font-size: 1.4rem; min-height: 60px;">প্রশ্ন</h3>
         
-        <img id="yes-gif" src="http://googleusercontent.com/image_collection/image_retrieval/14450430860716134725" class="anim-gif hidden" alt="Yes Animation">
-        <img id="no-gif" src="http://googleusercontent.com/image_collection/image_retrieval/6525019310877782493" class="anim-gif hidden" alt="No Animation">
-
-        <div id="btn-group">
-            <button onclick="handleAnswer(true)">হ্যাঁ</button>
-            <button onclick="handleAnswer(false)">না</button>
+        <div id="btn-group" style="margin-top: 20px; position: relative; min-height: 80px;">
+            <button class="btn-yes" onclick="handleYes()">হ্যাঁ ❤️</button>
+            <button id="no-button" class="btn-no" onmouseover="shrinkNoBtn()" onclick="shrinkNoBtn()">না 😜</button>
         </div>
-        <button id="next-btn" class="hidden" onclick="nextQuestion()">পরের প্রশ্ন 👉</button>
     </div>
 
     <div id="envelope-screen" class="card hidden">
@@ -339,6 +338,7 @@
 আরাফাত ( ভোটকা চাইনিজ )।`;
 
         let currentQuestion = 0;
+        let noScale = 1;
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -359,27 +359,28 @@
 
         function showQuestion() {
             document.getElementById('question-text').innerText = questions[currentQuestion];
-            document.getElementById('yes-gif').classList.add('hidden');
-            document.getElementById('no-gif').classList.add('hidden');
-            document.getElementById('btn-group').classList.remove('hidden');
-            document.getElementById('next-btn').classList.add('hidden');
+            // Reset "No" button size for new question
+            noScale = 1;
+            const noBtn = document.getElementById('no-button');
+            noBtn.style.transform = `scale(${noScale})`;
+            noBtn.style.opacity = '1';
+            noBtn.style.pointerEvents = 'auto';
         }
 
-        function handleAnswer(isYes) {
-            document.getElementById('btn-group').classList.add('hidden');
-            if (isYes) {
-                document.getElementById('yes-gif').classList.remove('hidden');
-                document.getElementById('next-btn').classList.remove('hidden');
+        function shrinkNoBtn() {
+            const noBtn = document.getElementById('no-button');
+            noScale -= 0.3; // shrink by 30% each attempt
+            
+            if (noScale <= 0.1) {
+                noBtn.style.transform = 'scale(0)';
+                noBtn.style.opacity = '0';
+                noBtn.style.pointerEvents = 'none'; // Completely unclickable
             } else {
-                document.getElementById('no-gif').classList.remove('hidden');
-                setTimeout(() => {
-                    alert("উফ! 'না' বলা যাবে না, 'হ্যাঁ' বলতে হবে! 😜");
-                    showQuestion();
-                }, 1500);
+                noBtn.style.transform = `scale(${noScale})`;
             }
         }
 
-        function nextQuestion() {
+        function handleYes() {
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 showQuestion();
